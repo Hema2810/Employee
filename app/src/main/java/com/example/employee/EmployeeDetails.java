@@ -17,6 +17,7 @@ public class EmployeeDetails extends AppCompatActivity {
 
     EmployeeDatabase mDb;
     String avatarString;
+    public static final int PICK_IMAGE = 1;
 
 
     @Override
@@ -72,14 +73,14 @@ public class EmployeeDetails extends AppCompatActivity {
         }));
 
     }
-    public static final int PICK_IMAGE = 1;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         final ImageView avatar = findViewById(R.id.iv_EmployeeAvatar);
-        avatarString=data.getDataString();
-        if (requestCode == PICK_IMAGE) {
+
+        if (resultCode == PICK_IMAGE) {
+            avatarString=data.getDataString();
             Picasso.with(avatar.getContext())
                     .load(avatarString)
                     .placeholder(R.drawable.download)
